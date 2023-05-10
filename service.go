@@ -11,7 +11,7 @@ import (
 var prices = map[string]float64{
 	"ETH": 999.99,
 	"BTC": 20000.0,
-	"GG":  1000000.0,
+	"HANDY":  1000000.0,
 }
 
 type PriceService interface {
