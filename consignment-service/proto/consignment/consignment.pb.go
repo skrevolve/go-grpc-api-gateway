@@ -20,6 +20,7 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
+// 위탁 판매
 type Consignment struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -99,6 +100,7 @@ func (x *Consignment) GetVesselId() string {
 	return ""
 }
 
+// 적재 컨테이너(물건)
 type Container struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
