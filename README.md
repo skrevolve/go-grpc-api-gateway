@@ -40,10 +40,10 @@ make run
 
 ### test
 >
-  http://localhost:3000/?ticker=ETH
+    http://localhost:3000/?ticker=ETH
 >
-  http://localhost:3000/?ticker=BTC
+    http://localhost:3000/?ticker=BTC
 >
-  http://localhost:3000/?ticker=HANDY
+    http://localhost:3000/?ticker=HANDY
 >
-  http://localhost:3000/?ticker=TEST
+    http://localhost:3000/?ticker=TEST
