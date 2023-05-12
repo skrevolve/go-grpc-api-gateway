@@ -37,6 +37,7 @@ func NewJSONAPIServer(listenAddr string, svc PriceService) *JSONAPIServer {
 
 func (s *JSONAPIServer) Run() {
 	http.HandleFunc("/", MakeAPIFunc(s.HandleFetchPrice))
+	http.HandleFunc("/2", MakeAPIFunc(s.HandleFetchPrice))
 	http.ListenAndServe(s.listenAddr, nil)
 }
 
