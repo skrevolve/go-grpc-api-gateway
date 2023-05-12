@@ -2,7 +2,7 @@ package main
 
 import (
 	"context"
-	"grpc/proto"
+	"grpc/proto/user"
 	"math/rand"
 	"net"
 
@@ -35,7 +35,7 @@ func NewGRPCPriceFetcher(svc PriceService) *GRPCPriceFetcherServer {
 	}
 }
 
-func (s *GRPCPriceFetcherServer) FetchPrice(ctx context.Context, req *proto.PriceRequest) (*proto.PriceResponse, error) {
+func (s *GRPCPriceFetcherServer) Login(ctx context.Context, req *user.LoginRequest) (*user.LoginResponse, error) {
 	reqid := rand.Intn(10000)
 	ctx = context.WithValue(ctx, "requestID", reqid)
 
