@@ -3,7 +3,7 @@ syntax = "proto3";
 option go_package = "github.com/skrevolve/proto/user";
 
 service User {
-  //rpc FetchPrice(LoginRequest) returns (LoginResponse);
+  rpc Login(LoginRequest) returns (LoginResponse);
 }
 
 message LoginRequest {
