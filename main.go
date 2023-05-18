@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"flag"
 	"log"
 	"net"
 	"net/http"
@@ -10,8 +11,16 @@ import (
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
 
+	"github.com/skrevolve/grpc/database"
 	userpb "github.com/skrevolve/grpc/protos/user"
 )
+
+var (
+	tcpPort  = flag.String("tcp", ":8080", "listen address of the tcp transport")
+	grpcPort = flag.String("grpc", ":8090", "listen address of the gRPC transport")
+	ctx      = context.Background()
+)
+
 type GRPCServer struct {
 	userpb.UnimplementedUserServiceServer
 }
@@ -29,8 +38,11 @@ func (s *GRPCServer) GetProfile(ctx context.Context, in *userpb.GetProfileRequse
 }
 
 func main() {
+	// connect MySQL
+	database.Init()
+
 	// listening ont TCP port
-	lis, err := net.Listen("tcp", ":8080")
+	lis, err := net.Listen("tcp", *tcpPort)
 	if err != nil {
 		log.Fatalln("failed to listen:", err)
 	}
@@ -49,7 +61,7 @@ func main() {
 	// Create a client connection to the gRPC server we just started
 	// This is where the gRPC-Gateway proxies the requests
 	conn, err := grpc.DialContext(
-		context.Background(),
+		ctx,
 		"0.0.0.0:8080",
 		grpc.WithBlock(),
 		grpc.WithTransportCredentials(insecure.NewCredentials()),
@@ -61,13 +73,13 @@ func main() {
 	gwmux := runtime.NewServeMux()
 
 	// register UserService
-	err = userpb.RegisterUserServiceHandler(context.Background(), gwmux, conn)
+	err = userpb.RegisterUserServiceHandler(ctx, gwmux, conn)
 	if err != nil {
 		log.Fatalln("failed to register gateway:", err)
 	}
 
 	gwServer := &http.Server{
-		Addr: ":8090",
+		Addr: *grpcPort,
 		Handler: gwmux,
 	}
 
