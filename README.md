@@ -39,6 +39,6 @@ make run
 
 ### test
 >
-    http://localhost:8090/v1/user/login
+    [POST] http://localhost:8090/v1/user/login
 >
-    http://localhost:8090/v1/user/301
+    [GET] http://localhost:8090/v1/user/301
