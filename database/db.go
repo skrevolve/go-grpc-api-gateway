@@ -6,9 +6,10 @@ import (
 	"os"
 	"time"
 
-	"github.com/jinzhu/gorm"
 	"github.com/joho/godotenv"
 	"github.com/skrevolve/grpc-gateway/models"
+	"gorm.io/driver/mysql"
+	"gorm.io/gorm"
 )
 
 func dsn() (string, error) {
@@ -53,39 +54,32 @@ func dsn() (string, error) {
 }
 
 func New() (*gorm.DB, error) {
-	s, err := dsn()
+	dsn, err := dsn()
 	if err != nil {
 		return nil, err
 	}
 
 	var db *gorm.DB
-	db, err = gorm.Open("mysql", s)
-	// defer db.DB().Close()
-	// go func() {
-	// 	for {
-	// 		time.Sleep(time.Second * 2)
-	// 		db.DB().Ping()
-	// 	}
-	// }()
-
-	db.DB().SetMaxIdleConns(3)
-	db.DB().SetMaxOpenConns(4)
-	// show global variables like 'wait_timeout'; => 28800(8 hours)
-	db.DB().SetConnMaxLifetime(time.Hour) // 커넥션 유지 최대 유지 시간을 1시간으로 설정
-	db.LogMode(false)
-
+	db, err = gorm.Open(mysql.Open(dsn), &gorm.Config{})
 	if err != nil {
 		return nil, err
 	}
+
+	sqlDB, err := db.DB()
+	if err != nil {
+		return nil, err
+	}
+	sqlDB.SetMaxIdleConns(10)
+	sqlDB.SetMaxOpenConns(100)
+	sqlDB.SetConnMaxLifetime(time.Hour) // 커넥션 유지 최대 유지 시간을 1시간으로 설정
 
 	return db, nil
 }
 
 func AutoMigrate(db *gorm.DB) error {
-	err := db.AutoMigrate(
+	if err := db.AutoMigrate(
 		&models.User{},
-	).Error
-	if err != nil {
+	); err != nil {
 		return err
 	}
 	return nil
