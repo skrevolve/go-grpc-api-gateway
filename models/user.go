@@ -8,7 +8,7 @@ import (
 )
 
 type User struct {
-	UserInfoId       uint      `gorm:"primaryKey"`
+	UserInfoId       uint      	`gorm:"primaryKey"`
 	ImgPath          string
 	Name             string
 	Gender           string
@@ -28,15 +28,13 @@ type User struct {
 
 func (u *User) GenerateHashPassword() error {
 	if len(u.Password) == 0 {
-		return errors.New("invalid password. password should not be empty")
+		return errors.New("invalid param. password should not be empty")
 	}
-
 	hashPassword, err := bcrypt.GenerateFromPassword([]byte(u.Password), bcrypt.DefaultCost)
 	if err != nil {
 		return err
 	}
 	u.Password = string(hashPassword)
-
 	return nil
 }
 

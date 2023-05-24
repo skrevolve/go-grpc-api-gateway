@@ -12,7 +12,7 @@ import (
 	"gorm.io/gorm"
 )
 
-func dsn() (string, error) {
+func makeDsn() (string, error) {
 	envErr := godotenv.Load()
 	if envErr != nil {
 		return "Error loading .env file", envErr
@@ -54,13 +54,12 @@ func dsn() (string, error) {
 }
 
 func New() (*gorm.DB, error) {
-	dsn, err := dsn()
+	dsn, err := makeDsn()
 	if err != nil {
 		return nil, err
 	}
 
-	var db *gorm.DB
-	db, err = gorm.Open(mysql.Open(dsn), &gorm.Config{})
+	db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{})
 	if err != nil {
 		return nil, err
 	}
@@ -71,7 +70,7 @@ func New() (*gorm.DB, error) {
 	}
 	sqlDB.SetMaxIdleConns(10)
 	sqlDB.SetMaxOpenConns(100)
-	sqlDB.SetConnMaxLifetime(time.Hour) // 커넥션 유지 최대 유지 시간을 1시간으로 설정
+	sqlDB.SetConnMaxLifetime(time.Hour)
 
 	return db, nil
 }
