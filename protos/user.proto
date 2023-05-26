@@ -11,14 +11,14 @@ import "empty.proto";
 service Users {
   rpc Login (LoginRequest) returns (LoginResponse) {
     option (google.api.http) = {
-      post: "/user/login"
+      post: "/v1/user/login"
       body: "*"
     };
   }
 
   rpc GetProfile (empty.Empty) returns (GetProfileResponse) {
     option (google.api.http) = {
-      get: "/user/profile"
+      get: "/v1/user/profile"
     };
   }
 }

@@ -9,6 +9,7 @@ import (
 
 	"github.com/golang-jwt/jwt/v4"
 	grpc_auth "github.com/grpc-ecosystem/go-grpc-middleware/auth"
+	"github.com/skrevolve/grpc-gateway/models"
 )
 
 var (
@@ -23,19 +24,19 @@ type claims struct {
 	jwt.StandardClaims
 }
 
-func GenerateAccessToken(id uint, email string, sessionKey string) (string, error) {
-	return generateAccessToken(id, email, sessionKey, time.Now())
+func GenerateAccessToken(userInfoId uint, email string) (string, error) {
+	return generateAccessToken(userInfoId, email, time.Now())
 }
 
-func GenerateRefreshToken(id uint, email string, sessionKey string) (string, error) {
-	return generateRefreshToken(id, email, sessionKey, time.Now())
+func GenerateRefreshToken(userInfoId uint, email string) (string, error) {
+	return generateRefreshToken(userInfoId, email, time.Now())
 }
 
-func generateAccessToken(id uint, email string, sessionKey string, now time.Time) (string, error) {
+func generateAccessToken(userInfoId uint, email string, now time.Time) (string, error) {
 	claims := &claims{
-		id,
+		userInfoId,
 		email,
-		sessionKey,
+		models.MakeSessionKey(13),
 		jwt.StandardClaims{
 			ExpiresAt: now.Add(time.Hour * 2).Unix(), // 2H
 		},
@@ -48,11 +49,11 @@ func generateAccessToken(id uint, email string, sessionKey string, now time.Time
 	return accessToken, nil
 }
 
-func generateRefreshToken(id uint, email string, sessionKey string, now time.Time) (string, error) {
+func generateRefreshToken(userInfoId uint, email string, now time.Time) (string, error) {
 	claims := &claims{
-		id,
+		userInfoId,
 		email,
-		sessionKey,
+		models.MakeSessionKey(13),
 		jwt.StandardClaims{
 			ExpiresAt: now.Add(time.Hour * 336).Unix(), // 14D
 		},
@@ -65,7 +66,7 @@ func generateRefreshToken(id uint, email string, sessionKey string, now time.Tim
 	return refreshToken, nil
 }
 
-func ParseAccessToken(ctx context.Context) (*claims, error) {
+func GetUserInfo(ctx context.Context) (*claims, error) {
 	tokenString, err := grpc_auth.AuthFromMD(ctx, "Token")
 	if err != nil {
 		return nil, err

@@ -2,11 +2,17 @@ package main
 
 import (
 	"fmt"
+	"net"
 	"os"
 
+	grpc_middleware "github.com/grpc-ecosystem/go-grpc-middleware"
+	grpc_recovery "github.com/grpc-ecosystem/go-grpc-middleware/recovery"
 	"github.com/rs/zerolog"
 	"github.com/skrevolve/grpc-gateway/database"
-	store "github.com/skrevolve/grpc-gateway/stores"
+	handler "github.com/skrevolve/grpc-gateway/handlers"
+	pb "github.com/skrevolve/grpc-gateway/protos"
+	"github.com/skrevolve/grpc-gateway/stores"
+	"google.golang.org/grpc"
 )
 
 const (
@@ -31,7 +37,20 @@ func main() {
 		zeroLogger.Fatal().Err(err).Msg("failed to migrate database")
 	}
 
-	userStore := store.NewUserStore(db)
+	userStore := stores.NewUserStore(db)
 
-	handlers := handler.New(&l, )
+	handlers := handler.New(&zeroLogger, userStore)
+
+	lis, err := net.Listen("tcp", port)
+	if err != nil {
+		zeroLogger.Panic().Err(fmt.Errorf("faield to listen: %w", port))
+	}
+
+	grpcServer := grpc.NewServer(
+		grpc_middleware.WithUnaryServerChain(
+			grpc_recovery.UnaryServerInterceptor(),
+		),
+	)
+	pb.RegisterUsersServer(grpcServer, handlers)
+
 }
