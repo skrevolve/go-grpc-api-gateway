@@ -5,7 +5,7 @@ import (
 	"net/http"
 
 	"github.com/gin-gonic/gin"
-	"github.com/skrevolve/api-gateway/pkg/auth/pb"
+	pb "github.com/skrevolve/api-gateway/pkg/auth/pb"
 )
 
 type LoginRequestBody struct {
@@ -13,7 +13,7 @@ type LoginRequestBody struct {
 	Password string `json:"password"`
 }
 
-// 로그인 HTTP 요청 바인딩
+// 로그인
 func Login(ctx *gin.Context, c pb.AuthServiceClient) {
 	body := LoginRequestBody{}
 
@@ -22,7 +22,6 @@ func Login(ctx *gin.Context, c pb.AuthServiceClient) {
 		return
 	}
 
-	// auth RPC microservice 로그인으로 전달
 	res, err := c.Login(context.Background(), &pb.LoginRequest{
 		Email: body.Email,
 		Password: body.Password,
