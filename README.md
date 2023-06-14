@@ -1,4 +1,4 @@
-# grpc-api-gateway vs go-grpc-gateway
+# go-grpc-api-gateway
 
 https://grpc-ecosystem.github.io/grpc-gateway/
 
