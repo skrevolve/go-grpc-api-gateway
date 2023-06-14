@@ -1,4 +1,4 @@
-# grpc-gateway
+# grpc-api-gateway vs go-grpc-gateway
 
 https://grpc-ecosystem.github.io/grpc-gateway/
 
@@ -29,3 +29,5 @@ go install google.golang.org/protobuf/cmd/protoc-gen-go
 go get -u google.golang.org/grpc/cmd/protoc-gen-go-grpc
 go install google.golang.org/grpc/cmd/protoc-gen-go-grpc
 ```
+
+// module github.com/skrevolve/grpc-gateway

@@ -19,6 +19,10 @@ const (
 	port = ":50051"
 )
 
+type Server struct {
+	pb.UnimplementedUsersServer
+}
+
 func main() {
 	w := zerolog.ConsoleWriter{Out: os.Stderr}
 	zeroLogger := zerolog.New(w).With().Timestamp().Caller().Logger()
@@ -38,19 +42,26 @@ func main() {
 	}
 
 	userStore := stores.NewUserStore(db)
-
-	handlers := handler.New(&zeroLogger, userStore)
+	handlers := handler.New(
+		pb.UnimplementedUsersServer,
+		&zeroLogger,
+		userStore,
+	)
 
 	lis, err := net.Listen("tcp", port)
 	if err != nil {
 		zeroLogger.Panic().Err(fmt.Errorf("faield to listen: %w", port))
 	}
 
-	grpcServer := grpc.NewServer(
+	s := grpc.NewServer(
 		grpc_middleware.WithUnaryServerChain(
 			grpc_recovery.UnaryServerInterceptor(),
 		),
 	)
-	pb.RegisterUsersServer(grpcServer, handlers)
 
+	pb.RegisterUsersServer(s, &Server{})
+	zeroLogger.Info().Str("port", port).Msg("starting server")
+	if err := s.Serve(lis); err != nil {
+		zeroLogger.Panic().Err(fmt.Errorf("failed to serve: %w", err))
+	}
 }
