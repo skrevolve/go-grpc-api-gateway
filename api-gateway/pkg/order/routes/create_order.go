@@ -25,7 +25,7 @@ func CreateOrder(ctx *gin.Context, c pb.OrderServiceClient) {
 
 	// 토큰 인증 미들웨어로 부터 받은 데이터
 	userInfoId, _ := ctx.Get("userInfoId")
-	// grpc 요청
+	// order service 서버로 요청
 	res, err := c.CreateOrder(context.Background(), &pb.CreateOrderRequest{
 		ProductInfoId: body.ProductInfoId,
 		Quantity: body.Quantity,

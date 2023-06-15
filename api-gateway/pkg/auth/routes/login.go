@@ -23,7 +23,7 @@ func Login(ctx *gin.Context, c pb.AuthServiceClient) {
 		return
 	}
 
-	// grpc 요청
+	// auth service 서버로 요청
 	res, err := c.Login(context.Background(), &pb.LoginRequest{
 		Email: body.Email,
 		Password: body.Password,

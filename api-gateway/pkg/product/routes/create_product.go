@@ -24,6 +24,7 @@ func CreateProduct(ctx *gin.Context, c pb.ProductServiceClient) {
 		return
 	}
 
+	// product service 서버로 요청
 	res, err := c.CreateProduct(context.Background(), &pb.CreateProductRequset{
 		Name: body.Name,
 		Stock: body.Stock,

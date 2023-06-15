@@ -2,10 +2,13 @@
 
 ## configuration description
 
-- api-gateway: API server (localhost:8080)
-- auth-svc: Auth Service server (localhost:50051)
-- order-svc: Order Service server (localhost:50052)
-- product-svc: Product Service server (localhost:50053)
+1. API Gateway
+    - api-gateway ( localhost:8080 )
+2. gRPC Gateway (service)
+    - auth-svc: AuthService ( localhost:50051 )
+    - order-svc: OrderService ( localhost:50052 )
+    - product-svc: ProductService ( localhost:50053 )
+
 
 <!-- https://grpc-ecosystem.github.io/grpc-gateway/ -->
 

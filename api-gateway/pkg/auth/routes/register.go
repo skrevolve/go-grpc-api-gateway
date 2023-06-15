@@ -23,7 +23,7 @@ func Register(ctx *gin.Context, c pb.AuthServiceClient) {
 		return
 	}
 
-	// grpc 요청
+	// auth service 서버로 요청
 	res, err := c.Register(context.Background(), &pb.RegisterRequest{
 		Email:		body.Email,
 		Password:	body.Password,
