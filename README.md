@@ -26,11 +26,11 @@ brew install protobuff
 ### GRPC and Protobuffer package dependencies
 
 ```sh
-go get -u github.com/gin-gonic/gin
-go get -u github.com/spf13/viper
-go get -u google.golang.org/grpc
-# go get -u google.golang.org/protobuf/cmd/protoc-gen-go // 플러그인 지원 안함. 아래로 변경
-go get -u google.golang.org/grpc/cmd/protoc-gen-go-grpc
+go install google.golang.org/protobuf/cmd/protoc-gen-go
+go install google.golang.org/grpc/cmd/protoc-gen-go-grpc
+
+go get google.golang.org/protobuf/cmd/protoc-gen-go
+go get google.golang.org/grpc/cmd/protoc-gen-go-grpc
 ```
 
 ## issue ([link click](https://github.com/golang/protobuf/issues/1070))
