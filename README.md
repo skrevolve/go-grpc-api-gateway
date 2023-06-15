@@ -26,11 +26,9 @@ brew install protobuff
 ### GRPC and Protobuffer package dependencies
 
 ```sh
+go install google.golang.org/grpc
 go install google.golang.org/protobuf/cmd/protoc-gen-go
 go install google.golang.org/grpc/cmd/protoc-gen-go-grpc
-
-go get google.golang.org/protobuf/cmd/protoc-gen-go
-go get google.golang.org/grpc/cmd/protoc-gen-go-grpc
 ```
 
 ## issue ([link click](https://github.com/golang/protobuf/issues/1070))
@@ -38,4 +36,13 @@ go get google.golang.org/grpc/cmd/protoc-gen-go-grpc
 ```sh
 protoc protoc/route_guide.proto --go_out=plugins=grpc:.
 OUTPUT : --go_out: protoc-gen-go: plugins are not supported; use 'protoc --go-grpc_out=...' to generate gRPC
+```
+
+## VSCode: Colud not import Golang package
+
+use go work
+
+```sh
+go work init
+go work use ./api-gateway ./auth-svc ./order-svc ./product-svc
 ```
