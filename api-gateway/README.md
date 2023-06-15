@@ -11,10 +11,9 @@ create database product_svc;
 ## 설치
 
 ```sh
-# go mod init github.com/YOUR_USERNAME/go-grpc-api-gateway
+go mod init github.com/YOUR_USERNAME/api-gateway
 go get github.com/gin-gonic/gin
 go get github.com/spf13/viper
-go get google.golang.org/grpc
 ```
 
 ## Generate proto
