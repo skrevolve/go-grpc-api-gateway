@@ -1,4 +1,18 @@
-# go-grpc-api-gateway
+# go-grpc-api-gateway-microservice
+
+## microservice spec
+
+- go-grpc
+- Gin
+- mysql
+- gorm
+
+## configuration description
+
+- api-gateway: API server (localhost:8080)
+- auth-svc: Auth Service server (localhost:50051)
+- order-svc: Order Service server (localhost:50052)
+- product-svc: Product Service server (localhost:50053)
 
 <!-- https://grpc-ecosystem.github.io/grpc-gateway/ -->
 
@@ -40,9 +54,10 @@ OUTPUT : --go_out: protoc-gen-go: plugins are not supported; use 'protoc --go-gr
 
 ## VSCode: Colud not import Golang package
 
-use go work
+use go work in project root
 
 ```sh
+cd go-grpc-api-gateway-microservice
 go work init
 go work use ./api-gateway ./auth-svc ./order-svc ./product-svc
 ```
