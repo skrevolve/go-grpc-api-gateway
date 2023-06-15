@@ -1,12 +1,5 @@
 # go-grpc-api-gateway-microservice
 
-## microservice spec
-
-- go-grpc
-- Gin
-- mysql
-- gorm
-
 ## configuration description
 
 - api-gateway: API server (localhost:8080)
