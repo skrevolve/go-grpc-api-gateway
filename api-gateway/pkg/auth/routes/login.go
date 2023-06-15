@@ -15,6 +15,7 @@ type LoginRequestBody struct {
 
 // 로그인
 func Login(ctx *gin.Context, c pb.AuthServiceClient) {
+
 	body := LoginRequestBody{}
 
 	if err := ctx.BindJSON(&body); err != nil {
@@ -22,11 +23,11 @@ func Login(ctx *gin.Context, c pb.AuthServiceClient) {
 		return
 	}
 
+	// grpc 요청
 	res, err := c.Login(context.Background(), &pb.LoginRequest{
 		Email: body.Email,
 		Password: body.Password,
 	})
-
 	if err != nil {
 		ctx.AbortWithError(http.StatusBadGateway, err)
 		return

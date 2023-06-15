@@ -15,6 +15,7 @@ type RegisterRequestBody struct {
 
 // 회원 가입
 func Register(ctx *gin.Context, c pb.AuthServiceClient) {
+
 	body := RegisterRequestBody{}
 
 	if err := ctx.BindJSON(&body); err != nil {
@@ -22,6 +23,7 @@ func Register(ctx *gin.Context, c pb.AuthServiceClient) {
 		return
 	}
 
+	// grpc 요청
 	res, err := c.Register(context.Background(), &pb.RegisterRequest{
 		Email:		body.Email,
 		Password:	body.Password,

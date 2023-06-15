@@ -7,14 +7,14 @@ import (
 )
 
 // auth 라우팅
-func AuthRoutes(r *gin.Engine, c *config.Config) *ServiceClient {
+func RegisterRoutes(r *gin.Engine, c *config.Config) *ServiceClient {
 
-	// auth microservice 연결 요청
+	// auth microservice 연결
 	svc := &ServiceClient{
 		Client: InitServiceClient(c),
 	}
 
-	// http 바인딩 요청
+	// http 바인딩
 	auth := r.Group("/auth")
 	auth.POST("/register", svc.Register)
 	auth.POST("/login", svc.Login)

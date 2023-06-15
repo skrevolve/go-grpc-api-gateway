@@ -13,12 +13,12 @@ type AuthMiddlewareConfig struct {
 	svc *ServiceClient
 }
 
-// auth 미들웨어 연결
+// auth 미들웨어 연결 실행
 func InitAuthMiddleware(svc *ServiceClient) AuthMiddlewareConfig {
 	return AuthMiddlewareConfig{svc}
 }
 
-// auth 토큰 인증
+// 토큰 인증
 func (c *AuthMiddlewareConfig) AuthRequired(ctx *gin.Context) {
 
 	authorization := ctx.Request.Header.Get("authorization")
@@ -33,6 +33,7 @@ func (c *AuthMiddlewareConfig) AuthRequired(ctx *gin.Context) {
 		return
 	}
 
+	// grpc 요청
 	res, err := c.svc.Client.Validate(context.Background(), &pb.ValidateRequest{
 		Token: token[1],
 	})
@@ -42,5 +43,6 @@ func (c *AuthMiddlewareConfig) AuthRequired(ctx *gin.Context) {
 	}
 
 	ctx.Set("userInfoId", res.UserInfoId)
+
 	ctx.Next()
 }

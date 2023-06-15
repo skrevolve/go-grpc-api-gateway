@@ -25,3 +25,15 @@ go get google.golang.org/grpc/cmd/protoc-gen-go-grpc
 protoc protoc/route_guide.proto --go_out=plugins=grpc:.
 OUTPUT : --go_out: protoc-gen-go: plugins are not supported; use 'protoc --go-grpc_out=...' to generate gRPC
 ```
+
+## Generate proto
+
+```sh
+make proto
+```
+
+## Run Server
+
+```sh
+make server
+```

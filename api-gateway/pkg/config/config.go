@@ -9,7 +9,9 @@ type Config struct {
 	OrderSvcUrl 	string `mapstructure:"ORDER_SVC_URL"`
 }
 
+// 환경 설정 검수 및 설정
 func LoadConfig() (c Config, err error) {
+
 	viper.AddConfigPath("./pkg/config/envs")
 	viper.SetConfigName("dev")
 	viper.SetConfigType("env")
