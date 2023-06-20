@@ -34,12 +34,14 @@ func main() {
 	}
 	fmt.Println("Auth Svc on", c.Port)
 
-	grpcServer := grpc.NewServer()
-
-	pb.RegisterAuthServiceServer(grpcServer, &services.Server{
+	s := services.Server{
 		H: h,
 		Jwt: jwt,
-	})
+	}
+
+	grpcServer := grpc.NewServer()
+
+	pb.RegisterAuthServiceServer(grpcServer, &s)
 
 	if err := grpcServer.Serve(lis); err != nil {
 		log.Fatalln("Failed to serve:", err)
