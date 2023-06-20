@@ -7,8 +7,8 @@
 
 2. gRPC Service
     - [**auth-svc**](https://github.com/skrevolve/go-grpc-api-gateway-microservice/tree/master/auth-svc)
-    - [**order-svc**](https://github.com/skrevolve/go-grpc-api-gateway-microservice/tree/master/order-svc)
     - [**product-svc**](https://github.com/skrevolve/go-grpc-api-gateway-microservice/tree/master/product-svc)
+    - [**order-svc**](https://github.com/skrevolve/go-grpc-api-gateway-microservice/tree/master/order-svc)
 
 <!-- https://grpc-ecosystem.github.io/grpc-gateway/ -->
 
