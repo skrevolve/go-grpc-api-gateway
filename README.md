@@ -3,16 +3,16 @@
 ## Configuration Description
 
 1. API Gateway
-    - [api-gateway](https://github.com/skrevolve/go-grpc-api-gateway-microservice/tree/master/api-gateway)
+    - [**api-gateway**](https://github.com/skrevolve/go-grpc-api-gateway-microservice/tree/master/api-gateway)
 
 2. gRPC Service
-    - [auth-svc](https://github.com/skrevolve/go-grpc-api-gateway-microservice/tree/master/auth-svc)
-    - [order-svc](https://github.com/skrevolve/go-grpc-api-gateway-microservice/tree/master/order-svc)
-    - [product-svc](https://github.com/skrevolve/go-grpc-api-gateway-microservice/tree/master/product-svc)
+    - [**auth-svc**](https://github.com/skrevolve/go-grpc-api-gateway-microservice/tree/master/auth-svc)
+    - [**order-svc**](https://github.com/skrevolve/go-grpc-api-gateway-microservice/tree/master/order-svc)
+    - [**product-svc**](https://github.com/skrevolve/go-grpc-api-gateway-microservice/tree/master/product-svc)
 
 <!-- https://grpc-ecosystem.github.io/grpc-gateway/ -->
 
-## Installing protobuffer
+## Installing Protobuffer
 
 ### Linux (Ubuntu)
 
@@ -28,10 +28,10 @@ brew install protobuff
 
 ### Windows
 
-download : [protoc-23.1-win64.zip](https://github.com/protocolbuffers/protobuf/releases/tag/v23.1)
-
 ```sh
-> intsall protoc-23.1-win32.zip or protoc-23.1-win64.zip
+# https://github.com/protocolbuffers/protobuf/releases
+> protoc-2x.x-win32.zip
+> protoc-2x.x-win64.zip
 ```
 
 ### GRPC and Protobuffer package dependencies
@@ -44,16 +44,16 @@ go get google.golang.org/grpc/cmd/protoc-gen-go-grpc
 export PATH="$PATH:$(go env GOPATH)/bin"
 ```
 
-## Grpc Plugin Issue ([#1070](https://github.com/golang/protobuf/issues/1070))
+## 🐞[plugins are not supported : grpc #1070](https://github.com/golang/protobuf/issues/1070)
 
 ```sh
 protoc protoc/route_guide.proto --go_out=plugins=grpc:.
 ERR : --go_out: protoc-gen-go: plugins are not supported; use 'protoc --go-grpc_out=...' to generate gRPC
 ```
 
-## VSCode: Colud not import Golang package
+## 🐞Colud not import Golang package : VScode
 
-use go work in project root
+Use [**go work**](https://go.dev/doc/tutorial/workspaces) in project root
 
 ```sh
 cd go-grpc-api-gateway-microservice
