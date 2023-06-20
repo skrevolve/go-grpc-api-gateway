@@ -41,8 +41,6 @@ brew install protobuff
 # go get google.golang.org/grpc
 go get google.golang.org/protobuf/cmd/protoc-gen-go
 go get google.golang.org/grpc/cmd/protoc-gen-go-grpc
-
-export PATH="$PATH:$(go env GOPATH)/bin"
 ```
 
 ## Make Resource

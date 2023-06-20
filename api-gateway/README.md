@@ -1,6 +1,6 @@
 # API Gateway
 
-## module install
+## Package Dependencies
 
 ```sh
 # go mod init github.com/YOUR_USERNAME/api-gateway

@@ -1,6 +1,6 @@
 # Auth Service
 
-## module install
+## Package Dependencies
 
 ```sh
 # go mod init github.com/YOUR_USERNAME/auth-svc
