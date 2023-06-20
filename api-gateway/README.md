@@ -1,4 +1,4 @@
-# API Gateway :8080
+# API Gateway
 
 ## module install
 
@@ -20,5 +20,5 @@ make proto
 ## Run Server
 
 ```sh
-make server
+make server # http://localhost:8080
 ```

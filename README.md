@@ -1,13 +1,14 @@
 # go-grpc-api-gateway-microservice
 
-## configuration description
+## Configuration Description
 
 1. API Gateway
-    - api-gateway: http API gateway [http://localhost:8080]
+    - [api-gateway](https://github.com/skrevolve/go-grpc-api-gateway-microservice/tree/master/api-gateway)
+
 2. gRPC Service
-    - auth-svc: AuthService [http://localhost:50051]
-    - order-svc: OrderService [http://localhost:50052]
-    - product-svc: ProductService [http://localhost:50053]
+    - [auth-svc](https://github.com/skrevolve/go-grpc-api-gateway-microservice/tree/master/auth-svc)
+    - [order-svc](https://github.com/skrevolve/go-grpc-api-gateway-microservice/tree/master/order-svc)
+    - [product-svc](https://github.com/skrevolve/go-grpc-api-gateway-microservice/tree/master/product-svc)
 
 <!-- https://grpc-ecosystem.github.io/grpc-gateway/ -->
 

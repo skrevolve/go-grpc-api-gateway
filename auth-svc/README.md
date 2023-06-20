@@ -23,5 +23,5 @@ make proto
 ## Run Server
 
 ```sh
-make server
+make server # http://localhost:50051
 ```
