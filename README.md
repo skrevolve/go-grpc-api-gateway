@@ -28,17 +28,19 @@ brew install protobuff
 
 ### Windows
 
+download : [protoc-23.1-win64.zip](https://github.com/protocolbuffers/protobuf/releases/tag/v23.1)
+
 ```sh
-> goto https://github.com/protocolbuffers/protobuf/releases/tag/v23.1
 > intsall protoc-23.1-win32.zip or protoc-23.1-win64.zip
 ```
 
 ### GRPC and Protobuffer package dependencies
 
 ```sh
-# go install google.golang.org/grpc
-go install google.golang.org/protobuf/cmd/protoc-gen-go
-go install google.golang.org/grpc/cmd/protoc-gen-go-grpc
+# go get google.golang.org/grpc
+go get google.golang.org/protobuf/cmd/protoc-gen-go
+go get google.golang.org/grpc/cmd/protoc-gen-go-grpc
+
 export PATH="$PATH:$(go env GOPATH)/bin"
 ```
 
