@@ -4,7 +4,7 @@
 
 1. API Gateway
     - api-gateway ( localhost:8080 )
-2. gRPC Gateway (service)
+2. gRPC Gateway
     - auth-svc: AuthService ( localhost:50051 )
     - order-svc: OrderService ( localhost:50052 )
     - product-svc: ProductService ( localhost:50053 )
