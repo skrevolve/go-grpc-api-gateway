@@ -20,8 +20,8 @@ go get github.com/golang-jwt/jwt
 make proto
 ```
 
-## Run Server
+## Run Server [http://localhost:50051]
 
 ```sh
-make server # http://localhost:50051
+make server
 ```

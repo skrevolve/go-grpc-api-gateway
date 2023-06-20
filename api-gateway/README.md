@@ -17,8 +17,8 @@ go get github.com/spf13/viper
 make proto
 ```
 
-## Run Server
+## Run Server [http://localhost:8080]
 
 ```sh
-make server # http://localhost:8080
+make server
 ```

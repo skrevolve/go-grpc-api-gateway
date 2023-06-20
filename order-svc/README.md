@@ -1,9 +1,9 @@
-# Product Service
+# Order Service
 
 ## Package Dependencies
 
 ```sh
-# go mod init github.com/YOUR_USERNAME/product-svc
+# go mod init github.com/YOUR_USERNAME/order-svc
 go get google.golang.org/grpc
 go get google.golang.org/protobuf/cmd/protoc-gen-go
 go get google.golang.org/grpc/cmd/protoc-gen-go-grpc
@@ -18,7 +18,7 @@ go get gorm.io/driver/mysql
 make proto
 ```
 
-## Run Server [http://localhost:50052]
+## Run Server [http://localhost:50053]
 
 ```sh
 make server
