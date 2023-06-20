@@ -1,14 +1,6 @@
-# api gateway
+# AuthService :50051
 
-## 리소스 생성
-
-```sql
-create database auth_svc;
-create database order_svc;
-create database product_svc;
-```
-
-## 설치
+## module install
 
 ```sh
 go mod init github.com/YOUR_USERNAME/auth-svc

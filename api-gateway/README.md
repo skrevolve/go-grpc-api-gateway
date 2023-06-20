@@ -1,12 +1,4 @@
-# api gateway
-
-## resource
-
-```sql
-create database auth_svc;
-create database order_svc;
-create database product_svc;
-```
+# API Gateway :8080
 
 ## module install
 

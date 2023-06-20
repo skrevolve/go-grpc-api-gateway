@@ -3,12 +3,11 @@
 ## configuration description
 
 1. API Gateway
-    - api-gateway ( localhost:8080 )
-2. gRPC Gateway
-    - auth-svc: AuthService ( localhost:50051 )
-    - order-svc: OrderService ( localhost:50052 )
-    - product-svc: ProductService ( localhost:50053 )
-
+    - api-gateway: http API gateway [http://localhost:8080]
+2. gRPC Service
+    - auth-svc: AuthService [http://localhost:50051]
+    - order-svc: OrderService [http://localhost:50052]
+    - product-svc: ProductService [http://localhost:50053]
 
 <!-- https://grpc-ecosystem.github.io/grpc-gateway/ -->
 
@@ -41,7 +40,7 @@ go install google.golang.org/protobuf/cmd/protoc-gen-go
 go install google.golang.org/grpc/cmd/protoc-gen-go-grpc
 ```
 
-## issue ([link click](https://github.com/golang/protobuf/issues/1070))
+## issue ([#1070](https://github.com/golang/protobuf/issues/1070))
 
 ```sh
 protoc protoc/route_guide.proto --go_out=plugins=grpc:.
@@ -56,4 +55,12 @@ use go work in project root
 cd go-grpc-api-gateway-microservice
 go work init
 go work use ./api-gateway ./auth-svc ./order-svc ./product-svc
+```
+
+## make resource
+
+```sql
+create database auth_svc;
+create database order_svc;
+create database product_svc;
 ```
