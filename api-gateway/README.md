@@ -1,6 +1,6 @@
 # api gateway
 
-## 리소스 생성
+## resource
 
 ```sql
 create database auth_svc;
@@ -8,7 +8,7 @@ create database order_svc;
 create database product_svc;
 ```
 
-## 설치
+## module install
 
 ```sh
 go mod init github.com/YOUR_USERNAME/api-gateway

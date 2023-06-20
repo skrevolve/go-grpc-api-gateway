@@ -4,8 +4,8 @@ import "github.com/spf13/viper"
 
 type Config struct {
 	Port         string `mapstructure:"PORT"`
-	DBurl        string `mapstructure:"DB_URL"`
 	JWTSecretKey string `mapstructure:"JWT_SECRET_KEY"`
+	DBUrl		 string `mapstructure:"DB_URL"`
 }
 
 func LoadConfig() (config Config, err error) {

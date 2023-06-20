@@ -1,5 +1,5 @@
 proto:
-	protoc pkg/pb/*.proto --go_out=. --go-grpc_out=.
+	protoc pkg/pb/*.proto --go_out=. --go-grpc_out=. --go-grpc_opt=require_unimplemented_servers=false
 
 # protoc -I ./proto \
 # 	 --go_out ./proto --go_opt paths=source_relative \

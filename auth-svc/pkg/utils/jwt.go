@@ -16,14 +16,15 @@ type JwtWrapper struct {
 
 type jwtClaims struct {
 	jwt.StandardClaims
-	Id	  uint64
-	Email string
+	UserInfoId uint64
+	Email 	   string
 }
 
-func (w *JwtWrapper) GenerateToken(user models.UserInfo) (signedToken string, err error) {
+// 토큰 생성
+func (w *JwtWrapper) GenerateToken(user models.User) (signedToken string, err error) {
 
 	claims := &jwtClaims{
-		Id: uint64(user.Id),
+		UserInfoId: uint64(user.UserInfoId),
 		Email: user.Email,
 		StandardClaims: jwt.StandardClaims{
 			ExpiresAt: time.Now().Local().Add(time.Hour * time.Duration(w.ExpirationHours)).Unix(),
@@ -41,6 +42,7 @@ func (w *JwtWrapper) GenerateToken(user models.UserInfo) (signedToken string, er
 	return signedToken, nil
 }
 
+// 토큰 인증
 func (w *JwtWrapper) ValidateToken(signedToken string) (claims *jwtClaims, err error) {
 
 	token, err := jwt.ParseWithClaims(
