@@ -51,16 +51,16 @@ create database order_svc;
 create database product_svc;
 ```
 
-## 🐞Issue
+## 🐞Issues
 
-### [plugins are not supported : grpc #1070](https://github.com/golang/protobuf/issues/1070)
+### 1. [plugins are not supported : grpc #1070](https://github.com/golang/protobuf/issues/1070)
 
 ```sh
 protoc protoc/route_guide.proto --go_out=plugins=grpc:.
 ERR : --go_out: protoc-gen-go: plugins are not supported; use 'protoc --go-grpc_out=...' to generate gRPC
 ```
 
-### [Could not import Golang package : VScode](https://stackoverflow.com/questions/58518588/vscode-could-not-import-golang-package)
+### 2. [Could not import Golang package : VScode](https://stackoverflow.com/questions/58518588/vscode-could-not-import-golang-package)
 
 Use [**go work**](https://go.dev/doc/tutorial/workspaces) in project root
 
