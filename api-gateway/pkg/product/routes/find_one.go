@@ -13,11 +13,11 @@ import (
 func FindOne(ctx *gin.Context, c pb.ProductServiceClient) {
 
 	// param 정수 변환
-	id, _ := strconv.ParseInt(ctx.Param("id"), 10, 32)
+	productInfoId, _ := strconv.ParseInt(ctx.Param("product_info_id"), 10, 32)
 
 	// product service 서버로 요청
 	res, err := c.FindOne(context.Background(), &pb.FindOneRequest{
-		Id: int64(id),
+		ProductInfoId: int64(productInfoId),
 	})
 	if err != nil {
 		ctx.AbortWithError(http.StatusBadGateway, err)

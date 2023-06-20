@@ -21,12 +21,12 @@ message CreateProductRequset {
 message CreateProductResponse {
     int64 status = 1;
     string error = 2;
-    int64 id = 3; // productInfoId?
+    int64 productInfoId = 3;
 }
 
 // 제품 찾기
 message FindOneData {
-    int64 id = 1;
+    int64 productInfoId = 1;
     string name = 2;
     string sku = 3;
     int64 stock = 4;
@@ -34,7 +34,7 @@ message FindOneData {
 }
 
 message FindOneRequest {
-    int64 id = 1;
+    int64 productInfoId = 1;
 }
 
 message FindOneResponse {
@@ -45,8 +45,8 @@ message FindOneResponse {
 
 // 제품 재고 감소
 message DecreaseStockRequest {
-    int64 id =1;
-    int64 orderInfoId = 3;
+    int64 productInfoId = 1;
+    int64 orderInfoId = 2;
 }
 
 message DecreaseStockResponse {
