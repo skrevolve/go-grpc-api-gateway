@@ -42,7 +42,7 @@ func (c *AuthMiddlewareConfig) AuthRequired(ctx *gin.Context) {
 		return
 	}
 
-	ctx.Set("userInfoId", res.UserInfoId)
+	ctx.Set("UserInfoId", res.UserInfoId)
 
 	ctx.Next()
 }

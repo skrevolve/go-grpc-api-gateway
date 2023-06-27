@@ -22,7 +22,7 @@ func RegisterRoutes(r *gin.Engine, c *config.Config, authSvc *auth.ServiceClient
 	routes := r.Group("/product")
 	routes.Use(a.AuthRequired) // 토큰 인증 미들웨어 사용
 	routes.POST("/", svc.CreateProduct)
-	routes.GET("/:id", svc.FindOne)
+	routes.GET("/:product_info_id", svc.FindOne)
 }
 
 func (svc *ServiceClient) FindOne(ctx *gin.Context) {

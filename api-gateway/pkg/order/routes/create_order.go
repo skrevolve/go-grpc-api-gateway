@@ -9,7 +9,7 @@ import (
 )
 
 type CreateOrderRequestBody struct {
-	ProductInfoId int64 `json:"productInfoId"`
+	ProductInfoId int64 `json:"product_info_id"`
 	Quantity      int64 `json:"quantity"`
 }
 
@@ -24,7 +24,7 @@ func CreateOrder(ctx *gin.Context, c pb.OrderServiceClient) {
 	}
 
 	// 토큰 인증 미들웨어로 부터 받은 데이터
-	userInfoId, _ := ctx.Get("userInfoId")
+	userInfoId, _ := ctx.Get("UserInfoId")
 	// order service 서버로 요청
 	res, err := c.CreateOrder(context.Background(), &pb.CreateOrderRequest{
 		ProductInfoId: body.ProductInfoId,
